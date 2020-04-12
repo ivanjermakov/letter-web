@@ -1,0 +1,9 @@
+<div class='form-container'>
+	<form (ngSubmit)='login()'>
+		<h1>Login</h1>
+		<input type='text' [(ngModel)]='loginUser.login' name='login'>
+		<input type='password' [(ngModel)]='loginUser.password' name='password'>
+		<button type='submit'>Login</button>
+		<a [routerLink]='"/register"'>Register</a>
+	</form>
+</div>

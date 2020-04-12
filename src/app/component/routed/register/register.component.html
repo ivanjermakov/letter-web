@@ -1,0 +1,12 @@
+<div class='form-container'>
+	<form (ngSubmit)='register()'>
+		<h1>Register</h1>
+		<input type='text' [(ngModel)]='registerUser.firstName' placeholder='First name' name='firstName'>
+		<input type='text' [(ngModel)]='registerUser.lastName' placeholder='Last name' name='lastName'>
+		<input type='text' [(ngModel)]='registerUser.login' placeholder='Login' name='login'>
+		<input type='password' [(ngModel)]='registerUser.password' placeholder='Password' name='password'>
+		<input type='password' [(ngModel)]='retypePassword' placeholder='Retype password' name='retypePassword'>
+		<button type='submit'>Register</button>
+		<a [routerLink]='"/auth"'>Login</a>
+	</form>
+</div>
