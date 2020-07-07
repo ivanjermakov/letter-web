@@ -1,1 +1,1 @@
-export const LOCAL_STORAGE_TOKEN_NAME: string = 'Auth-Token';
+export const TOKEN_HEADER_NAME: string = 'Auth-Token';
