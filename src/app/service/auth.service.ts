@@ -5,7 +5,7 @@ import {Observable} from "rxjs";
 import {Token} from "../dto/Token";
 import {environment} from "../../environments/environment";
 import {User} from "../dto/User";
-import {LOCAL_STORAGE_TOKEN_NAME} from "../../constant";
+import {TOKEN_HEADER_NAME} from "../../constant";
 
 @Injectable({
 	providedIn: 'root'
@@ -28,7 +28,7 @@ export class AuthService {
 			`${environment.API_URL}/${this.AUTH_URL}`,
 			{
 				headers: {
-					[LOCAL_STORAGE_TOKEN_NAME]: token
+					[TOKEN_HEADER_NAME]: token
 				}
 			}
 		);
