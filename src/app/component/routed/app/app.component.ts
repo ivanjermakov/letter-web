@@ -20,20 +20,21 @@ export class AppComponent {
 				debounceTime(100)
 			)
 			.subscribe((path: string) => {
-					if (path === '/auth' || path === '/register') return;
+				if (['/auth', '/register', '/about'].includes(path)) return;
 
-					meProvider.me
-						.subscribe(me => {
-							if (me) {
-								if (path === '/') {
-									this.router.navigate(['/im']);
-								} else {
-									this.router.navigate([path]);
-								}
+				meProvider.me
+					.subscribe(me => {
+						console.log(me)
+						if (me) {
+							if (path === '/') {
+								this.router.navigate(['/im']);
 							} else {
-								this.router.navigate(['/auth']);
+								this.router.navigate([path]);
 							}
-						})
+						} else {
+							this.router.navigate(['/auth']);
+						}
+					})
 				}
 			);
 	}
