@@ -20,7 +20,7 @@ export class AppComponent {
 				debounceTime(100)
 			)
 			.subscribe((path: string) => {
-				if (['/auth', '/register', '/about'].includes(path)) return;
+				if (['/auth', '/register', '/home'].includes(path)) return;
 
 				meProvider.me
 					.subscribe(me => {

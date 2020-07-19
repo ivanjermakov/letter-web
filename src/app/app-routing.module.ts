@@ -3,13 +3,13 @@ import {RouterModule, Routes} from '@angular/router';
 import {AuthComponent} from "./component/routed/auth/auth.component";
 import {RegisterComponent} from "./component/routed/register/register.component";
 import {MessagingComponent} from "./component/routed/messaging/messaging.component";
-import {AboutComponent} from "./component/routed/about/about.component";
+import {HomeComponent} from "./component/routed/home/home.component";
 
 
 const routes: Routes = [
 	{
-		path: 'about',
-		component: AboutComponent
+		path: 'home',
+		component: HomeComponent
 	},
 	{
 		path: 'auth',

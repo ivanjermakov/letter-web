@@ -8,7 +8,7 @@ import {RegisterComponent} from './component/routed/register/register.component'
 import {MessagingComponent} from './component/routed/messaging/messaging.component';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
-import {AboutComponent} from './component/routed/about/about.component';
+import {HomeComponent} from './component/routed/home/home.component';
 
 @NgModule({
 	declarations: [
@@ -16,7 +16,7 @@ import {AboutComponent} from './component/routed/about/about.component';
 		AuthComponent,
 		RegisterComponent,
 		MessagingComponent,
-		AboutComponent
+		HomeComponent
 	],
 	imports: [
 		BrowserModule,
