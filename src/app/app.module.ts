@@ -9,6 +9,10 @@ import {MessagingComponent} from './component/routed/messaging/messaging.compone
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {HomeComponent} from './component/routed/home/home.component';
+import {NavComponent} from './component/embedded/nav/nav.component';
+import {AboutComponent} from './component/routed/about/about.component';
+import {FeaturesComponent} from './component/routed/features/features.component';
+import {NameComponent} from './component/embedded/name/name.component';
 
 @NgModule({
 	declarations: [
@@ -16,7 +20,11 @@ import {HomeComponent} from './component/routed/home/home.component';
 		AuthComponent,
 		RegisterComponent,
 		MessagingComponent,
-		HomeComponent
+		HomeComponent,
+		NavComponent,
+		AboutComponent,
+		FeaturesComponent,
+		NameComponent
 	],
 	imports: [
 		BrowserModule,

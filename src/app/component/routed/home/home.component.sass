@@ -1,35 +1,17 @@
-@import 'src/constants'
-@import 'src/colors'
+@import 'src/app/style/constants'
+@import 'src/app/style/colors'
+@import 'src/app/style/common'
 
 .page
-  width: 100%
-  max-width: 1080px
-  animation: fadein 1s
-
   .content
-    display: flex
-    flex-direction: column
-
-    height: 100vh
-
-    padding: 20px
-
-    .nav
-      display: flex
-      align-items: center
-      justify-content: space-around
-
-      a
-        padding: 20px
-
-    .welcome-container
+    .home-container
       display: flex
       align-items: center
       flex: 1
 
       margin-top: -20px
 
-      .welcome
+      .home
         display: grid
         grid-template-columns: repeat(2, auto)
         grid-template-rows: repeat(4, auto)
@@ -84,17 +66,10 @@ button
 
 
 @media (max-width: 550px)
-  .nav
-    flex-direction: column !important
-    padding-top: 20px
-
-    a
-      padding: 5px !important
-
-  .welcome-container
+  .home-container
     margin-top: 0 !important
 
-    .welcome
+    .home
       .logo
         grid-column: 1/3 !important
         grid-row: 1/2 !important

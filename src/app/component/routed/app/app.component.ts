@@ -20,7 +20,13 @@ export class AppComponent {
 				debounceTime(100)
 			)
 			.subscribe((path: string) => {
-					if (['/auth', '/register', '/home'].includes(path)) return;
+					if (
+						path !== '/' &&
+						path !== '/im'
+					) {
+						this.router.navigate([path]);
+						return;
+					}
 
 					meProvider.me
 						.subscribe(me => {
