@@ -1,5 +1,5 @@
 <div class='nav'>
-	<a [routerLink]='"/about"'>About</a>
-	<a [routerLink]='"/features"'>Features</a>
+	<a [className]='tabIndex === 0 ? "active": ""' [routerLink]='"/about"'>About</a>
+	<a [className]='tabIndex === 1 ? "active": ""' [routerLink]='"/features"'>Features</a>
 	<a href='https://github.com/letter-messaging'>Source</a>
 </div>

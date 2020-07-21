@@ -1,1 +1,32 @@
 @import 'src/app/style/common'
+@import 'src/app/style/colors'
+
+.page
+  .content
+    .about-container
+      display: flex
+      align-items: center
+      flex: 1
+
+      margin-top: -20px
+
+      .about
+        display: flex
+        flex-direction: column
+
+        padding: 10px 0
+
+        p
+          padding: 20px 10px 10px
+
+        ul
+          padding-left: 60px
+
+          li
+            padding: 2px
+
+            &::marker
+              color: $special
+
+            a
+              padding: 0

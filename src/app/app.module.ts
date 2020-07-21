@@ -12,6 +12,7 @@ import {HomeComponent} from './component/routed/home/home.component';
 import {NavComponent} from './component/embedded/nav/nav.component';
 import {AboutComponent} from './component/routed/about/about.component';
 import {FeaturesComponent} from './component/routed/features/features.component';
+import {NameComponent} from './component/embedded/name/name.component';
 
 @NgModule({
 	declarations: [
@@ -22,7 +23,8 @@ import {FeaturesComponent} from './component/routed/features/features.component'
 		HomeComponent,
 		NavComponent,
 		AboutComponent,
-		FeaturesComponent
+		FeaturesComponent,
+		NameComponent
 	],
 	imports: [
 		BrowserModule,
