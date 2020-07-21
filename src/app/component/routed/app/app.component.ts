@@ -20,23 +20,23 @@ export class AppComponent {
 				debounceTime(100)
 			)
 			.subscribe((path: string) => {
-				if (
-					path !== '/' &&
-					path !== '/im'
-				) {
-					this.router.navigate([path]);
-					return;
-				}
+					if (
+						path !== '/' &&
+						path !== '/im'
+					) {
+						this.router.navigate([path]);
+						return;
+					}
 
-				meProvider.me
-					.subscribe(me => {
-						console.log(me)
-						if (me) {
-							if (path === '/') {
-								this.router.navigate(['/im']);
-							} else {
-								this.router.navigate([path]);
-							}
+					meProvider.me
+						.subscribe(me => {
+							console.log(me)
+							if (me) {
+								if (path === '/') {
+									this.router.navigate(['/im']);
+								} else {
+									this.router.navigate([path]);
+								}
 							} else {
 								this.router.navigate(['/auth']);
 							}
