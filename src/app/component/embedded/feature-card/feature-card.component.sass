@@ -1,0 +1,48 @@
+@import 'src/app/style/constants'
+@import 'src/app/style/colors'
+
+.feature-card
+  display: flex
+  align-items: center
+  justify-content: center
+
+  .image
+    flex: 1
+    padding: 20px
+
+    img
+      width: 100%
+      border-radius: 20px
+
+  .feature-container
+    display: flex
+    flex-direction: column
+    flex: 2
+
+    padding: 20px
+
+    .title
+      font-size: $font-size-title
+      font-weight: bold
+
+    .description
+      font-size: $font-size
+
+.reverse
+  flex-direction: row-reverse
+
+  .feature-container
+    text-align: end
+
+@media (max-width: 550px)
+  .feature-card
+    flex-direction: column-reverse
+
+    .image
+      width: 100%
+
+    .feature-container
+      text-align: center
+
+  .reverse
+    flex-direction: column-reverse !important

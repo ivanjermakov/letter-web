@@ -13,6 +13,7 @@ import {NavComponent} from './component/embedded/nav/nav.component';
 import {AboutComponent} from './component/routed/about/about.component';
 import {FeaturesComponent} from './component/routed/features/features.component';
 import {NameComponent} from './component/embedded/name/name.component';
+import {FeatureCardComponent} from './component/embedded/feature-card/feature-card.component';
 
 @NgModule({
 	declarations: [
@@ -24,7 +25,8 @@ import {NameComponent} from './component/embedded/name/name.component';
 		NavComponent,
 		AboutComponent,
 		FeaturesComponent,
-		NameComponent
+		NameComponent,
+		FeatureCardComponent
 	],
 	imports: [
 		BrowserModule,

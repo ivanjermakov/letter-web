@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {MeProvider} from "../../../provider/me-provider";
+import {first} from "rxjs/operators";
 
 @Component({
 	selector: 'app-home',
@@ -9,14 +11,23 @@ import {Router} from "@angular/router";
 export class HomeComponent implements OnInit {
 
 	constructor(
-		private router: Router
+		private router: Router,
+		private meProvider: MeProvider
 	) {}
 
 	ngOnInit(): void {
 	}
 
 	start() {
-		this.router.navigate(['/'], {skipLocationChange: true})
+		this.meProvider.me
+			.pipe(first())
+			.subscribe(me => {
+				if (me) {
+					this.router.navigate(['/im']);
+				} else {
+					this.router.navigate(['/auth']);
+				}
+			})
 	}
 
 }
