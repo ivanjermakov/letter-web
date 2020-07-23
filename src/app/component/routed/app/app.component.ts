@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {MeProvider} from "../../../provider/me-provider";
 import {NavigationEnd, Router} from "@angular/router";
-import {debounceTime, filter, map} from "rxjs/operators";
+import {debounceTime, filter, first, map} from "rxjs/operators";
 
 @Component({
 	selector: 'app-root',
@@ -20,26 +20,26 @@ export class AppComponent {
 				debounceTime(100)
 			)
 			.subscribe((path: string) => {
-					if (
-						path !== '/' &&
-						path !== '/im'
-					) {
-						this.router.navigate([path]);
-						return;
-					}
+				if (
+					path !== '/' &&
+					path !== '/im'
+				) {
+					this.router.navigate([path]);
+					return;
+				}
 
-					meProvider.me
-						.subscribe(me => {
-							console.log(me)
-							if (me) {
-								if (path === '/') {
-									this.router.navigate(['/im']);
-								} else {
-									this.router.navigate([path]);
-								}
+				this.meProvider.me
+					.pipe(first())
+					.subscribe(me => {
+						if (me) {
+							if (path === '/') {
+								this.router.navigate(['/im']);
 							} else {
-								this.router.navigate(['/auth']);
+								this.router.navigate([path]);
 							}
+						} else {
+							this.router.navigate(['/auth']);
+						}
 						})
 				}
 			);
