@@ -3,7 +3,45 @@
 		<app-nav [tabIndex]='2'></app-nav>
 		<div class='features-container'>
 			<div class='features'>
-
+				<!--TODO: replace dummy images with real screenshots-->
+				<app-feature-card
+						[title]='"Minimalist design"'
+						[description]='"Simple application design look modern and highly usable"'
+						[image]='"assets/screenshots/design.png"'
+				></app-feature-card>
+				<app-feature-card
+						[title]='"Your data is yours"'
+						[description]='"We require only your email to start messaging"'
+						[image]='"assets/screenshots/data.png"'
+						[reverse]='true'
+				></app-feature-card>
+				<app-feature-card
+						[title]='"Multiple content type support"'
+						[description]='"You can send text, images, documents and code"'
+						[image]='"assets/screenshots/multi-content.png"'
+				></app-feature-card>
+				<app-feature-card
+						[title]='"Markdown support"'
+						[description]='"Send rich text messages"'
+						[image]='"assets/screenshots/markdown.png"'
+						[reverse]='true'
+				></app-feature-card>
+				<app-feature-card
+						[title]='"Keyboard centric design"'
+						[description]='"Use messenger without a mouse"'
+						[image]='"assets/screenshots/mouseless.png"'
+				></app-feature-card>
+				<app-feature-card
+						[title]='"Chats"'
+						[description]='"Create and join chats"'
+						[image]='"assets/screenshots/chats.png"'
+						[reverse]='true'
+				></app-feature-card>
+				<app-feature-card
+						[title]='"Separate spaces"'
+						[description]='"Keep your conversations with family, friends and coworkers separately"'
+						[image]='"assets/screenshots/spaces.png"'
+				></app-feature-card>
 			</div>
 		</div>
 	</div>
