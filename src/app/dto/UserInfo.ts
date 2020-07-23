@@ -1,4 +1,4 @@
-import {MaritalStatus} from "./enum/MaritalStatus";
+import {MaritalStatus} from "./enum/MaritalStatus"
 
 export interface UserInfo {
 

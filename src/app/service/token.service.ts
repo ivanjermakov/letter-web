@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {TOKEN_HEADER_NAME} from "../../constant";
+import {Injectable} from '@angular/core'
+import {TOKEN_HEADER_NAME} from "../../constant"
 
 @Injectable({
 	providedIn: 'root'
@@ -10,15 +10,15 @@ export class TokenService {
 	}
 
 	getLocalStorageToken(): string | null {
-		return localStorage.getItem(TOKEN_HEADER_NAME);
+		return localStorage.getItem(TOKEN_HEADER_NAME)
 	}
 
 	setToken(token: string): void {
-		localStorage.setItem(TOKEN_HEADER_NAME, token);
+		localStorage.setItem(TOKEN_HEADER_NAME, token)
 	}
 
 	removeLocalStorageToken(): void {
-		localStorage.removeItem(TOKEN_HEADER_NAME);
+		localStorage.removeItem(TOKEN_HEADER_NAME)
 	}
 
 }

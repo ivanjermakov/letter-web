@@ -1,15 +1,15 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {RegisterUser} from "../dto/RegisterUser";
-import {Observable} from "rxjs";
-import {environment} from "../../environments/environment";
+import {Injectable} from '@angular/core'
+import {HttpClient} from "@angular/common/http"
+import {RegisterUser} from "../dto/RegisterUser"
+import {Observable} from "rxjs"
+import {environment} from "../../environments/environment"
 
 @Injectable({
 	providedIn: 'root'
 })
 export class RegisterService {
 
-	REGISTER_URL = 'register';
+	REGISTER_URL = 'register'
 
 	constructor(
 		private http: HttpClient
@@ -17,7 +17,7 @@ export class RegisterService {
 	}
 
 	register(registerUser: RegisterUser): Observable<void> {
-		return this.http.post<void>(`${environment.API_URL}/${this.REGISTER_URL}`, registerUser);
+		return this.http.post<void>(`${environment.API_URL}/${this.REGISTER_URL}`, registerUser)
 	}
 
 }

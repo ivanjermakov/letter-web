@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {LoginUser} from "../../../dto/LoginUser";
-import {AuthService} from "../../../service/auth.service";
-import {Router} from "@angular/router";
-import {TokenService} from "../../../service/token.service";
-import {MeProvider} from "../../../provider/me-provider";
-import {Token} from "../../../dto/Token";
+import {Component, OnInit} from '@angular/core'
+import {LoginUser} from "../../../dto/LoginUser"
+import {AuthService} from "../../../service/auth.service"
+import {Router} from "@angular/router"
+import {TokenService} from "../../../service/token.service"
+import {MeProvider} from "../../../provider/me-provider"
+import {Token} from "../../../dto/Token"
 
 @Component({
 	selector: 'app-auth',
@@ -13,7 +13,7 @@ import {Token} from "../../../dto/Token";
 })
 export class AuthComponent implements OnInit {
 
-	loginUser: LoginUser;
+	loginUser: LoginUser
 
 	constructor(
 		private router: Router,
@@ -24,7 +24,7 @@ export class AuthComponent implements OnInit {
 		this.loginUser = {
 			login: '',
 			password: ''
-		};
+		}
 	}
 
 	ngOnInit(): void {
@@ -35,12 +35,12 @@ export class AuthComponent implements OnInit {
 			.authenticate(this.loginUser)
 			.subscribe(
 				({token}: Token) => {
-					console.debug(`successful auth, token: ${token}`);
-					this.tokenService.setToken(token);
+					console.debug(`successful auth, token: ${token}`)
+					this.tokenService.setToken(token)
 					this.meProvider.setByToken(token)
-					this.router.navigate(['/im']);
+					this.router.navigate(['/im'])
 				},
 				error => console.debug(error)
-			);
+			)
 	}
 }

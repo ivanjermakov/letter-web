@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-import {MeProvider} from "../../../provider/me-provider";
-import {first} from "rxjs/operators";
+import {Component, OnInit} from '@angular/core'
+import {Router} from "@angular/router"
+import {MeProvider} from "../../../provider/me-provider"
+import {first} from "rxjs/operators"
 
 @Component({
 	selector: 'app-home',
@@ -23,9 +23,9 @@ export class HomeComponent implements OnInit {
 			.pipe(first())
 			.subscribe(me => {
 				if (me) {
-					this.router.navigate(['/im']);
+					this.router.navigate(['/im'])
 				} else {
-					this.router.navigate(['/auth']);
+					this.router.navigate(['/auth'])
 				}
 			})
 	}

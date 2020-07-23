@@ -1,11 +1,11 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {AuthComponent} from "./component/routed/auth/auth.component";
-import {RegisterComponent} from "./component/routed/register/register.component";
-import {MessagingComponent} from "./component/routed/messaging/messaging.component";
-import {HomeComponent} from "./component/routed/home/home.component";
-import {AboutComponent} from "./component/routed/about/about.component";
-import {FeaturesComponent} from "./component/routed/features/features.component";
+import {NgModule} from '@angular/core'
+import {RouterModule, Routes} from '@angular/router'
+import {AuthComponent} from "./component/routed/auth/auth.component"
+import {RegisterComponent} from "./component/routed/register/register.component"
+import {MessagingComponent} from "./component/routed/messaging/messaging.component"
+import {HomeComponent} from "./component/routed/home/home.component"
+import {AboutComponent} from "./component/routed/about/about.component"
+import {FeaturesComponent} from "./component/routed/features/features.component"
 
 
 const routes: Routes = [
@@ -33,7 +33,7 @@ const routes: Routes = [
 		path: 'im',
 		component: MessagingComponent
 	}
-];
+]
 
 @NgModule({
 	imports: [RouterModule.forRoot(routes)],

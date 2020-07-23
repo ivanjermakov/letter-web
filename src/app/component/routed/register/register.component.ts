@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {RegisterUser} from "../../../dto/RegisterUser";
-import {Router} from "@angular/router";
-import {RegisterService} from "../../../service/register.service";
+import {Component, OnInit} from '@angular/core'
+import {RegisterUser} from "../../../dto/RegisterUser"
+import {Router} from "@angular/router"
+import {RegisterService} from "../../../service/register.service"
 
 @Component({
 	selector: 'app-register',
@@ -10,8 +10,8 @@ import {RegisterService} from "../../../service/register.service";
 })
 export class RegisterComponent implements OnInit {
 
-	registerUser: RegisterUser;
-	retypePassword: string;
+	registerUser: RegisterUser
+	retypePassword: string
 
 	constructor(
 		private registerService: RegisterService,
@@ -22,8 +22,8 @@ export class RegisterComponent implements OnInit {
 			lastName: '',
 			login: '',
 			password: ''
-		};
-		this.retypePassword = '';
+		}
+		this.retypePassword = ''
 	}
 
 	ngOnInit(): void {
@@ -34,8 +34,8 @@ export class RegisterComponent implements OnInit {
 			.register(this.registerUser)
 			.subscribe(
 				() => {
-					console.debug('successful registration');
-					this.router.navigate(['/auth']);
+					console.debug('successful registration')
+					this.router.navigate(['/auth'])
 				},
 				error => console.debug(error)
 			)
