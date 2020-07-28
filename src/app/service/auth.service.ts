@@ -5,7 +5,7 @@ import {Observable} from "rxjs"
 import {Token} from "../dto/Token"
 import {environment} from "../../environments/environment"
 import {User} from "../dto/User"
-import {TOKEN_HEADER_NAME} from "../../constant"
+import {generateHttpOptionsWithTokenHeader} from "../../constant"
 
 @Injectable({
 	providedIn: 'root'
@@ -20,26 +20,30 @@ export class AuthService {
 	}
 
 	authenticate(loginUser: LoginUser): Observable<Token> {
-		return this.http.post<Token>(`${environment.API_URL}/${this.AUTH_URL}`, loginUser)
+		return this.http.post<Token>(
+			`${environment.API_URL}/${this.AUTH_URL}`,
+			loginUser
+		)
 	}
 
 	authenticateByToken(token: string): Observable<User> {
 		return this.http.get<User>(
 			`${environment.API_URL}/${this.AUTH_URL}`,
-			{
-				headers: {
-					[TOKEN_HEADER_NAME]: token
-				}
-			}
+			generateHttpOptionsWithTokenHeader(token)
 		)
 	}
 
 	logoutAll(token: string): Observable<void> {
-		return this.http.get<void>(`${environment.API_URL}/${this.AUTH_URL}/logoutAll`)
+		return this.http.get<void>(
+			`${environment.API_URL}/${this.AUTH_URL}/logoutAll`,
+			generateHttpOptionsWithTokenHeader(token)
+		)
 	}
 
 	logout(token: string): Observable<void> {
-		return this.http.get<void>(`${environment.API_URL}/${this.AUTH_URL}/logout`)
+		return this.http.get<void>(
+			`${environment.API_URL}/${this.AUTH_URL}/logout`
+		)
 	}
 
 }

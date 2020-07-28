@@ -17,7 +17,10 @@ export class RegisterService {
 	}
 
 	register(registerUser: RegisterUser): Observable<void> {
-		return this.http.post<void>(`${environment.API_URL}/${this.REGISTER_URL}`, registerUser)
+		return this.http.post<void>(
+			`${environment.API_URL}/${this.REGISTER_URL}`,
+			registerUser
+		)
 	}
 
 }
