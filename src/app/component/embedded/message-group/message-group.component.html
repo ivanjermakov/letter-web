@@ -1,0 +1,7 @@
+<div class='message-group'>
+	<app-message
+			*ngFor='let message of messageGroup.messages; let i = index'
+			[message]='message'
+			[first]='i === messageGroup.messages.length - 1'>
+	</app-message>
+</div>

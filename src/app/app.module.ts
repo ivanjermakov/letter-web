@@ -18,6 +18,9 @@ import {PreviewsComponent} from './component/embedded/previews/previews.componen
 import {DetailsComponent} from './component/embedded/details/details.component'
 import {ConversationComponent} from './component/embedded/conversation/conversation.component'
 import {PreviewComponent} from './component/embedded/preview/preview.component'
+import {MessagesComponent} from './component/embedded/messages/messages.component'
+import {MessageGroupComponent} from './component/embedded/message-group/message-group.component'
+import {MessageComponent} from './component/embedded/message/message.component'
 
 @NgModule({
 	declarations: [
@@ -34,7 +37,10 @@ import {PreviewComponent} from './component/embedded/preview/preview.component'
 		PreviewsComponent,
 		DetailsComponent,
 		ConversationComponent,
-		PreviewComponent
+		PreviewComponent,
+		MessagesComponent,
+		MessageGroupComponent,
+		MessageComponent
 	],
 	imports: [
 		BrowserModule,

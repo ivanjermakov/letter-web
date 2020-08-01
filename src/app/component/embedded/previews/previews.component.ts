@@ -25,9 +25,6 @@ export class PreviewsComponent implements OnInit {
 				.subscribe(previews => {
 					console.debug('fetch previews', previews)
 					this.previews = previews
-					for (let i = 0; i < 20; i++) {
-						this.previews = this.previews.concat(previews)
-					}
 				})
 		})
 	}

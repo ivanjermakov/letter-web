@@ -1,0 +1,6 @@
+<div class='messages' *ngIf='messageGroups' #scrollToBottom>
+	<app-message-group
+			*ngFor='let messageGroup of messageGroups.reverse()'
+			[messageGroup]='messageGroup'>
+	</app-message-group>
+</div>

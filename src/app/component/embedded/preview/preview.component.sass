@@ -3,7 +3,7 @@
 
 .preview
   display: grid
-  grid-template-columns: 60px repeat(2, auto)
+  grid-template-columns: auto 1fr auto
   grid-template-rows: repeat(3, auto)
 
   width: 100%
@@ -15,6 +15,8 @@
     display: flex
     align-items: center
     justify-content: center
+
+    margin-right: 5px
 
     img
       width: 50px
@@ -33,7 +35,6 @@
     align-self: center
 
     font-size: $font-size-small
-    text-align: end
 
   .last-message
     grid-column: 2/4
@@ -42,8 +43,15 @@
     display: flex
     align-items: center
 
+    width: 100%
+
     .sender, .message-text
       font-size: $font-size-medium
 
     .sender
       color: $dark
+
+    .message-text
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
