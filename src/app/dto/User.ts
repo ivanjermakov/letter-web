@@ -1,9 +1,12 @@
-import {UserInfo} from "./UserInfo"
+import {Avatar} from "./Avatar"
 
 export interface User {
 
-	id: string;
-	login: string;
-	userInfo: UserInfo;
+	id: number
+	login: string
+	firstName: string
+	lastName: string
+	avatar: Avatar
+	lastSeen: Date
 
 }

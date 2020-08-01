@@ -38,4 +38,9 @@ export class AvatarService {
 		)
 	}
 
+	getAvatarUrl(avatar: Avatar) {
+		const avatarPath = avatar.path || avatar.defaultConversationAvatarPath
+		return `${environment.API_URL}/${environment.STATIC_RESOURCES_PATH}/${avatarPath}`
+	}
+
 }

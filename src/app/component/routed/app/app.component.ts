@@ -28,19 +28,23 @@ export class AppComponent {
 						return
 					}
 
-					this.meProvider.me
-						.pipe(first())
-						.subscribe(me => {
-							if (me) {
-								if (path === '/') {
-									this.router.navigate(['/im'])
+					this.meProvider.onload(() => {
+						this.meProvider.me
+							.pipe(first())
+							.subscribe(me => {
+								console.log(me)
+								if (me) {
+									if (path === '/') {
+										this.router.navigate(['/im'])
+									} else {
+										this.router.navigate([path])
+									}
 								} else {
-									this.router.navigate([path])
+									this.router.navigate(['/auth'])
 								}
-							} else {
-								this.router.navigate(['/auth'])
-							}
-						})
+							})
+					})
+
 				}
 			)
 	}

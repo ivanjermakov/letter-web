@@ -1,9 +1,9 @@
 import {Conversation} from "./Conversation"
 import {User} from "./User"
 import {PreviewType} from "./enum/PreviewType"
-import {Message} from "@angular/compiler/src/i18n/i18n_ast"
 import {Channel} from "./Channel"
 import {Avatar} from "./Avatar"
+import {Message} from "./Message"
 
 export class Preview {
 

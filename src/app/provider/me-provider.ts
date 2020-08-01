@@ -40,8 +40,16 @@ export class MeProvider {
 			)
 	}
 
+	onload(loaded: () => void, attempt: number = 1): void {
+		if (attempt > 10 || this.meSubject.getValue() != null) {
+			loaded()
+		} else {
+			setTimeout(() => this.onload(loaded, attempt + 1), 10)
+		}
+	}
+
 	private initializeFromLocalStorage(): void {
-		let token = this.tokenService.getLocalStorageToken()
+		const token = this.tokenService.getLocalStorageToken()
 		if (token) {
 			this.setByToken(token)
 		}

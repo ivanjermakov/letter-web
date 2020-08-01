@@ -1,0 +1,11 @@
+<div class='preview'>
+	<div class='recipient-avatar'>
+		<img [src]='getAvatarUrl(preview.with.avatar)' [alt]='preview.with.login + " avatar"'>
+	</div>
+	<p class='recipient-name'>{{preview.with.firstName}} {{preview.with.lastName}}</p>
+	<p class='last-message-sent'>{{formatSentDate(preview.lastMessage.sent)}}</p>
+	<div class='last-message'>
+		<p class='sender'>{{preview.lastMessage.sender.firstName}}: </p>
+		<p class='message-text'>{{formatMessageText(preview.lastMessage)}}</p>
+	</div>
+</div>

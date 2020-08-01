@@ -17,6 +17,7 @@ import {FeatureCardComponent} from './component/embedded/feature-card/feature-ca
 import {PreviewsComponent} from './component/embedded/previews/previews.component'
 import {DetailsComponent} from './component/embedded/details/details.component'
 import {ConversationComponent} from './component/embedded/conversation/conversation.component'
+import {PreviewComponent} from './component/embedded/preview/preview.component'
 
 @NgModule({
 	declarations: [
@@ -32,7 +33,8 @@ import {ConversationComponent} from './component/embedded/conversation/conversat
 		FeatureCardComponent,
 		PreviewsComponent,
 		DetailsComponent,
-		ConversationComponent
+		ConversationComponent,
+		PreviewComponent
 	],
 	imports: [
 		BrowserModule,

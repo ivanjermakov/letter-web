@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core'
 import {HttpClient} from "@angular/common/http"
 import {Observable} from "rxjs"
-import {Message} from "@angular/compiler/src/i18n/i18n_ast"
 import {environment} from "../../environments/environment"
 import {generateHttpOptionsWithTokenHeader} from "../../constant"
 import {Pageable} from "../util/Pageable"
+import {Message} from "../dto/Message"
 
 @Injectable({
 	providedIn: 'root'
@@ -33,6 +33,10 @@ export class MessageService {
 			deleteMessages,
 			generateHttpOptionsWithTokenHeader(token)
 		)
+	}
+
+	formatShortMessageText(message: Message): string {
+		return message.text || '[attachment]'
 	}
 
 }
