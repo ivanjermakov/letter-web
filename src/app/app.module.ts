@@ -21,6 +21,7 @@ import {PreviewComponent} from './component/embedded/preview/preview.component'
 import {MessagesComponent} from './component/embedded/messages/messages.component'
 import {MessageGroupComponent} from './component/embedded/message-group/message-group.component'
 import {MessageComponent} from './component/embedded/message/message.component'
+import {NoConversationComponent} from './component/embedded/no-conversation/no-conversation.component'
 
 @NgModule({
 	declarations: [
@@ -40,7 +41,8 @@ import {MessageComponent} from './component/embedded/message/message.component'
 		PreviewComponent,
 		MessagesComponent,
 		MessageGroupComponent,
-		MessageComponent
+		MessageComponent,
+		NoConversationComponent
 	],
 	imports: [
 		BrowserModule,

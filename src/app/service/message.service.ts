@@ -41,6 +41,8 @@ export class MessageService {
 	}
 
 	groupMessagesBySender(messages: Message[]): MessageGroup[] {
+		if (messages.length === 0) return []
+
 		const result: Message[][] = []
 		let buffer: Message[] = [messages[0]]
 

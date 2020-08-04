@@ -1,4 +1,9 @@
 <div class='conversation'>
-	<app-messages [messages]='messages'>
+	<app-messages
+			*ngIf='conversationId'
+			[messageGroups]='messageGroups'>
 	</app-messages>
+	<app-no-conversation
+			*ngIf='!conversationId'>
+	</app-no-conversation>
 </div>

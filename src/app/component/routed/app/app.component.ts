@@ -35,7 +35,7 @@ export class AppComponent {
 								console.log(me)
 								if (me) {
 									if (path === '/') {
-										this.router.navigate(['/im'])
+										this.router.navigate(['/im'], {queryParamsHandling: "merge"})
 									} else {
 										this.router.navigate([path])
 									}

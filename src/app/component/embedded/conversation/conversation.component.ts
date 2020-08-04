@@ -5,7 +5,7 @@ import {MessageService} from "../../../service/message.service"
 import {TokenProvider} from "../../../provider/token-provider"
 import {first} from "rxjs/operators"
 import {Pageable} from "../../../util/Pageable"
-import {Observable} from "rxjs"
+import {MessageGroup} from "../../../dto/MessageGroup"
 
 @Component({
 	selector: 'app-conversation',
@@ -14,7 +14,9 @@ import {Observable} from "rxjs"
 })
 export class ConversationComponent implements OnInit {
 
-	messages: Observable<Message[]>
+	messages: Message[] = []
+	messageGroups: MessageGroup[] = []
+	conversationId: number
 
 	constructor(
 		private route: ActivatedRoute,
@@ -24,15 +26,24 @@ export class ConversationComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.route.queryParams
-			.pipe(first())
 			.subscribe(params => {
-				const conversationId = params['c']
-				if (!conversationId) return
+				console.log(params)
+				this.conversationId = params['c']
+				if (!this.conversationId) {
+					this.messages = []
+					this.messageGroups = []
+					return
+				}
 
 				this.tokenProvider.token
 					.pipe(first())
 					.subscribe(token => {
-						this.messages = this.messageService.get(token, conversationId, new Pageable(0, 100))
+						this.messageService.get(token, this.conversationId, new Pageable(0, 100))
+							.subscribe(messages => {
+								console.log('set messages', messages)
+								this.messages = messages
+								this.messageGroups = this.messageService.groupMessagesBySender(this.messages)
+							})
 					})
 			})
 	}
