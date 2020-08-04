@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core'
+import {Component, HostListener, OnInit} from '@angular/core'
 import {Message} from "../../../dto/Message"
-import {ActivatedRoute} from "@angular/router"
+import {ActivatedRoute, Router} from "@angular/router"
 import {MessageService} from "../../../service/message.service"
 import {TokenProvider} from "../../../provider/token-provider"
 import {first} from "rxjs/operators"
@@ -20,6 +20,7 @@ export class ConversationComponent implements OnInit {
 
 	constructor(
 		private route: ActivatedRoute,
+		private router: Router,
 		private messageService: MessageService,
 		private tokenProvider: TokenProvider
 	) {}
@@ -47,5 +48,10 @@ export class ConversationComponent implements OnInit {
 			})
 	}
 
+	@HostListener('document:keydown.escape', ['$event']) onEscape() {
+		if (this.conversationId) {
+			this.router.navigate(['/im'])
+		}
+	}
 
 }
