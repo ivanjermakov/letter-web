@@ -20,32 +20,30 @@ export class AppComponent {
 				debounceTime(100)
 			)
 			.subscribe((path: string) => {
-					if (
-						path !== '/' &&
-						path !== '/im'
-					) {
-						this.router.navigate([path])
-						return
-					}
-
-					this.meProvider.onload(() => {
-						this.meProvider.me
-							.pipe(first())
-							.subscribe(me => {
-								console.log(me)
-								if (me) {
-									if (path === '/') {
-										this.router.navigate(['/im'], {queryParamsHandling: "merge"})
-									} else {
-										this.router.navigate([path])
-									}
-								} else {
-									this.router.navigate(['/auth'])
-								}
-							})
-					})
+				if (
+					path !== '/' &&
+					!path.includes('/im')
+				) {
+					this.router.navigate([path])
+					return
 				}
-			)
+
+				this.meProvider.onload(() => {
+					this.meProvider.me
+						.pipe(first())
+						.subscribe(me => {
+							if (me) {
+								if (path === '/') {
+									this.router.navigate(['/im'])
+								} else {
+									this.router.navigateByUrl(path)
+								}
+							} else {
+								this.router.navigate(['/auth'])
+							}
+						})
+				})
+			})
 	}
 
 }

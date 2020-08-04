@@ -27,7 +27,6 @@ export class ConversationComponent implements OnInit {
 	ngOnInit(): void {
 		this.route.queryParams
 			.subscribe(params => {
-				console.log(params)
 				this.conversationId = params['c']
 				if (!this.conversationId) {
 					this.messages = []
