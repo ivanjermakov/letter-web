@@ -7,6 +7,8 @@ import {Component, OnInit} from '@angular/core'
 })
 export class MessagingComponent implements OnInit {
 
+	conversationId: number
+
 	constructor() { }
 
 	ngOnInit(): void {

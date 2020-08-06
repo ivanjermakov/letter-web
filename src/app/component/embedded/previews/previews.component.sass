@@ -1,19 +1,15 @@
 @import 'src/app/style/colors'
+@import 'src/app/style/constants'
 
-$previewWidth: 300px
+$previewsWidth: 300px
 
 .previews
   display: flex
   flex-direction: column
 
-  padding: 0 6px 0 0
-
-  width: $previewWidth
+  width: $previewsWidth
   height: 100vh
 
-  border-right: 2px solid $bright
+  border-right: $border-separator
 
   overflow-y: auto
-
-  app-preview
-    margin: 4px

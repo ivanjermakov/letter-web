@@ -8,6 +8,12 @@
 
   width: 100%
 
+  padding: 4px 10px 4px 4px
+
+  &:hover
+    background: $bright
+    cursor: pointer
+
   .recipient-avatar
     grid-column: 1/2
     grid-row: 1/4
@@ -45,13 +51,24 @@
 
     width: 100%
 
-    .sender, .message-text
-      font-size: $font-size-medium
-
     .sender
+      padding-right: 4px
+
       color: $dark
+      font-size: $font-size-small
 
     .message-text
+      font-size: $font-size-medium
       white-space: nowrap
       overflow: hidden
       text-overflow: ellipsis
+
+.active
+  background: $special-dark
+  color: white
+
+  &:hover
+    background: $special-dark
+
+  .last-message .sender
+    color: $bright

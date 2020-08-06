@@ -20,7 +20,7 @@ export class MessageComponent implements OnInit {
 	constructor(
 		private avatarService: AvatarService,
 		private dateService: DateService
-	) { }
+	) {}
 
 	ngOnInit(): void {
 	}

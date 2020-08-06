@@ -1,4 +1,4 @@
-<div class='preview' [routerLink]='["/im"]' [queryParams]='{c: preview.conversation.id}'>
+<div class='preview' [ngClass]='{"active": active}' [routerLink]='["/im"]' [queryParams]='{c: preview.conversation.id}'>
 	<div class='recipient-avatar'>
 		<img [src]='getAvatarUrl(preview.with.avatar)' [alt]='preview.with.login + " avatar"'>
 	</div>

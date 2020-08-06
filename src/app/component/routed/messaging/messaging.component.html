@@ -1,7 +1,9 @@
 <div class='messaging'>
-	<app-previews>
+	<app-previews
+			[conversationId]='conversationId'>
 	</app-previews>
-	<app-conversation>
+	<app-conversation
+			(onConversation)='conversationId = $event'>
 	</app-conversation>
 	<app-details>
 	</app-details>

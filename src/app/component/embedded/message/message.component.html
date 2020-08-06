@@ -6,5 +6,8 @@
 		<p class='recipient-name'>{{message.sender.firstName}} {{message.sender.lastName}}</p>
 		<p class='first-message-sent'>{{formatSentDate(message.sent)}}</p>
 	</div>
+	<div class='sent' *ngIf='!first'>
+		{{formatSentDate(message.sent)}}
+	</div>
 	<p class='message-text'>{{message.text}}</p>
 </div>

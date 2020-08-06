@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core'
+import {Component, Input, OnInit} from '@angular/core'
 import {Preview} from "../../../dto/Preview"
 import {PreviewService} from "../../../service/preview.service"
 import {TokenProvider} from "../../../provider/token-provider"
@@ -10,6 +10,9 @@ import {Pageable} from "../../../util/Pageable"
 	styleUrls: ['./previews.component.sass']
 })
 export class PreviewsComponent implements OnInit {
+
+	@Input()
+	conversationId: number
 
 	previews: Preview[]
 

@@ -16,6 +16,9 @@ export class PreviewComponent implements OnInit {
 	@Input()
 	preview: Preview
 
+	@Input()
+	active: boolean
+
 	constructor(
 		private avatarService: AvatarService,
 		private messageService: MessageService,

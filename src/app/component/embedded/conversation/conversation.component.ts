@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core'
+import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core'
 import {Message} from "../../../dto/Message"
 import {ActivatedRoute, Router} from "@angular/router"
 import {MessageService} from "../../../service/message.service"
@@ -13,6 +13,9 @@ import {MessageGroup} from "../../../dto/MessageGroup"
 	styleUrls: ['./conversation.component.sass']
 })
 export class ConversationComponent implements OnInit {
+
+	@Output()
+	onConversation: EventEmitter<number> = new EventEmitter<number>()
 
 	messages: Message[] = []
 	messageGroups: MessageGroup[] = []
@@ -29,22 +32,24 @@ export class ConversationComponent implements OnInit {
 		this.route.queryParams
 			.subscribe(params => {
 				this.conversationId = params['c']
-				if (!this.conversationId) {
+				this.onConversation.emit(this.conversationId)
+
+				if (this.conversationId) {
+					this.tokenProvider.token
+						.pipe(first())
+						.subscribe(token => {
+							this.messageService.get(token, this.conversationId, new Pageable(0, 100))
+								.subscribe(messages => {
+									console.log('set messages', messages)
+									this.messages = messages
+									this.messageGroups = this.messageService.groupMessagesBySender(this.messages)
+								})
+						})
+				} else {
 					this.messages = []
 					this.messageGroups = []
 					return
 				}
-
-				this.tokenProvider.token
-					.pipe(first())
-					.subscribe(token => {
-						this.messageService.get(token, this.conversationId, new Pageable(0, 100))
-							.subscribe(messages => {
-								console.log('set messages', messages)
-								this.messages = messages
-								this.messageGroups = this.messageService.groupMessagesBySender(this.messages)
-							})
-					})
 			})
 	}
 

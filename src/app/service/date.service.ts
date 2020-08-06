@@ -6,10 +6,10 @@ import * as moment from "moment"
 })
 export class DateService {
 
-	constructor() { }
+	constructor() {}
 
 	formatDateTime(date: Date): string {
-		return moment(date).format('hh:ss')
+		return moment(date).format('HH:ss')
 	}
 
 }
