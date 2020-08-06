@@ -29,7 +29,7 @@ export class AppComponent {
 				}
 
 				this.meProvider.onload(() => {
-					this.meProvider.me
+					this.meProvider.me.observable
 						.pipe(first())
 						.subscribe(me => {
 							if (me) {

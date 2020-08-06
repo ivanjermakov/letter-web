@@ -1,9 +1,14 @@
 <div class='conversation'>
-	<app-messages
-			*ngIf='conversationId'
-			[messageGroups]='messageGroups'>
-	</app-messages>
-	<app-no-conversation
-			*ngIf='!conversationId'>
-	</app-no-conversation>
+	<ng-container *ngIf='conversationId'>
+		<app-messages
+				*ngIf='conversationId'
+				[messageGroups]='messageGroups'>
+		</app-messages>
+		<app-message-input>
+		</app-message-input>
+	</ng-container>
+	<ng-container *ngIf='!conversationId'>
+		<app-no-conversation>
+		</app-no-conversation>
+	</ng-container>
 </div>

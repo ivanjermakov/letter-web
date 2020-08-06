@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core'
+import {Preview} from "../../../dto/Preview"
 
 @Component({
 	selector: 'app-messaging',
@@ -6,6 +7,8 @@ import {Component, OnInit} from '@angular/core'
 	styleUrls: ['./messaging.component.sass']
 })
 export class MessagingComponent implements OnInit {
+
+	previews: Preview[]
 
 	conversationId: number
 

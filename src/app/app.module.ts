@@ -22,6 +22,10 @@ import {MessagesComponent} from './component/embedded/messages/messages.componen
 import {MessageGroupComponent} from './component/embedded/message-group/message-group.component'
 import {MessageComponent} from './component/embedded/message/message.component'
 import {NoConversationComponent} from './component/embedded/no-conversation/no-conversation.component'
+import {MessageInputComponent} from './component/embedded/message-input/message-input.component'
+import {AutosizeModule} from "ngx-autosize"
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome'
+import {AvatarComponent} from './component/embedded/avatar/avatar.component'
 
 @NgModule({
 	declarations: [
@@ -42,13 +46,17 @@ import {NoConversationComponent} from './component/embedded/no-conversation/no-c
 		MessagesComponent,
 		MessageGroupComponent,
 		MessageComponent,
-		NoConversationComponent
+		NoConversationComponent,
+		MessageInputComponent,
+		AvatarComponent
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		HttpClientModule,
-		FormsModule
+		FormsModule,
+		AutosizeModule,
+		FontAwesomeModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

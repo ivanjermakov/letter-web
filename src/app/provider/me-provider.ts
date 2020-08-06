@@ -1,28 +1,26 @@
 import {Injectable} from '@angular/core'
-import {BehaviorSubject, Observable} from 'rxjs'
 import {User} from '../dto/User'
 import {AuthService} from "../service/auth.service"
 import {TokenService} from "../service/token.service"
+import {ObservableData} from "../dto/ObservableData"
+import {first} from "rxjs/operators"
 
 @Injectable({
 	providedIn: 'root'
 })
 export class MeProvider {
 
-	private meSubject: BehaviorSubject<User | null>
-	me: Observable<User>
+	me: ObservableData<User> = new ObservableData<User>()
 
 	constructor(
 		private authService: AuthService,
 		private tokenService: TokenService
 	) {
-		this.meSubject = new BehaviorSubject<User | null>(null)
-		this.me = this.meSubject.asObservable()
 		this.initializeFromLocalStorage()
 	}
 
 	setMe(me: User): void {
-		this.meSubject.next(me)
+		this.me.set(me)
 	}
 
 	setByToken(token: string): void {
@@ -41,11 +39,15 @@ export class MeProvider {
 	}
 
 	onload(loaded: () => void, attempt: number = 1): void {
-		if (attempt > 10 || this.meSubject.getValue() != null) {
-			loaded()
-		} else {
-			setTimeout(() => this.onload(loaded, attempt + 1), 10)
-		}
+		this.me.observable
+			.pipe(first())
+			.subscribe(me => {
+				if (attempt > 10 || me != null) {
+					loaded()
+				} else {
+					setTimeout(() => this.onload(loaded, attempt + 1), 10)
+				}
+			})
 	}
 
 	private initializeFromLocalStorage(): void {

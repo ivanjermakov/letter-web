@@ -1,25 +1,23 @@
 import {Injectable} from '@angular/core'
-import {BehaviorSubject, Observable} from 'rxjs'
 import {TokenService} from "../service/token.service"
+import {ObservableData} from "../dto/ObservableData"
 
 @Injectable({
 	providedIn: 'root'
 })
 export class TokenProvider {
 
-	private tokenSubject: BehaviorSubject<string | null>
-	token: Observable<string>
+	token: ObservableData<string> = new ObservableData<string>()
 
 	constructor(
 		private tokenService: TokenService
 	) {
-		this.tokenSubject = new BehaviorSubject<string | null>(this.tokenService.getLocalStorageToken())
-		this.token = this.tokenSubject.asObservable()
+		this.token.set(this.tokenService.getLocalStorageToken())
 	}
 
 	setToken(token: string): void {
 		this.tokenService.setToken(token)
-		this.tokenSubject.next(token)
+		this.token.set(token)
 	}
 
 }

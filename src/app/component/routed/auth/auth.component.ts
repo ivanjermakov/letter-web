@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core'
 import {LoginUser} from "../../../dto/LoginUser"
 import {AuthService} from "../../../service/auth.service"
 import {Router} from "@angular/router"
-import {TokenService} from "../../../service/token.service"
 import {MeProvider} from "../../../provider/me-provider"
 import {Token} from "../../../dto/Token"
+import {TokenProvider} from "../../../provider/token-provider"
 
 @Component({
 	selector: 'app-auth',
@@ -18,7 +18,7 @@ export class AuthComponent implements OnInit {
 	constructor(
 		private router: Router,
 		private authService: AuthService,
-		private tokenService: TokenService,
+		private tokenProvider: TokenProvider,
 		private meProvider: MeProvider
 	) {
 		this.loginUser = {
@@ -36,7 +36,7 @@ export class AuthComponent implements OnInit {
 			.subscribe(
 				({token}: Token) => {
 					console.debug(`successful auth, token: ${token}`)
-					this.tokenService.setToken(token)
+					this.tokenProvider.setToken(token)
 					this.meProvider.setByToken(token)
 					this.router.navigate(['/im'])
 				},

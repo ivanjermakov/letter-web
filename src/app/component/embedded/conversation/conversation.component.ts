@@ -1,11 +1,13 @@
-import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core'
+import {Component, HostListener, OnInit} from '@angular/core'
 import {Message} from "../../../dto/Message"
 import {ActivatedRoute, Router} from "@angular/router"
 import {MessageService} from "../../../service/message.service"
 import {TokenProvider} from "../../../provider/token-provider"
-import {first} from "rxjs/operators"
+import {filter, first} from "rxjs/operators"
 import {Pageable} from "../../../util/Pageable"
 import {MessageGroup} from "../../../dto/MessageGroup"
+import {CurrentConversationProvider} from "../../../provider/current-conversation-provider"
+import {PreviewsProvider} from "../../../provider/previews-provider"
 
 @Component({
 	selector: 'app-conversation',
@@ -13,9 +15,6 @@ import {MessageGroup} from "../../../dto/MessageGroup"
 	styleUrls: ['./conversation.component.sass']
 })
 export class ConversationComponent implements OnInit {
-
-	@Output()
-	onConversation: EventEmitter<number> = new EventEmitter<number>()
 
 	messages: Message[] = []
 	messageGroups: MessageGroup[] = []
@@ -25,22 +24,26 @@ export class ConversationComponent implements OnInit {
 		private route: ActivatedRoute,
 		private router: Router,
 		private messageService: MessageService,
-		private tokenProvider: TokenProvider
+		private tokenProvider: TokenProvider,
+		private currentConversationProvider: CurrentConversationProvider,
+		private previewsProvider: PreviewsProvider,
 	) {}
 
 	ngOnInit(): void {
 		this.route.queryParams
 			.subscribe(params => {
 				this.conversationId = params['c']
-				this.onConversation.emit(this.conversationId)
+				this.currentConversationProvider.currentConversation.set(this.conversationId)
 
 				if (this.conversationId) {
-					this.tokenProvider.token
-						.pipe(first())
+					this.tokenProvider.token.observable
+						.pipe(
+							first(),
+							filter(t => !!t)
+						)
 						.subscribe(token => {
 							this.messageService.get(token, this.conversationId, new Pageable(0, 100))
 								.subscribe(messages => {
-									console.log('set messages', messages)
 									this.messages = messages
 									this.messageGroups = this.messageService.groupMessagesBySender(this.messages)
 								})
@@ -56,6 +59,23 @@ export class ConversationComponent implements OnInit {
 	@HostListener('document:keydown.escape', ['$event']) onEscape() {
 		if (this.conversationId) {
 			this.router.navigate(['/im'])
+		}
+	}
+
+	@HostListener('document:keydown', ['$event']) onKeydown(event: KeyboardEvent) {
+		if (event.ctrlKey) {
+			const index = parseInt(event.key) - 1
+			this.previewsProvider.previews.observable
+				.pipe(
+					first(),
+					filter(p => !!p)
+				)
+				.subscribe(previews => {
+					if (index !== null && index >= 0 && index < previews.length) {
+						const id = previews[index].conversation.id
+						this.router.navigate(['/im'], {queryParams: {'c': id}})
+					}
+				})
 		}
 	}
 

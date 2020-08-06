@@ -1,0 +1,15 @@
+<div class='message-input'>
+	<app-avatar class='my-avatar'
+	            [src]='"http://localhost:8080/api/file/default-avatar-conversation.png"'
+	            [size]='60'>
+	</app-avatar>
+	<textarea autosize [minRows]='2' [maxRows]='10'></textarea>
+	<app-avatar class='recipient-avatar'
+	            [src]='"http://localhost:8080/api/file/default-avatar-conversation.png"'
+	            [size]='60'>
+	</app-avatar>
+	<div class='toolbar'>
+		<fa-icon [icon]='fileIcon'></fa-icon>
+		<fa-icon [icon]='imageIcon'></fa-icon>
+	</div>
+</div>
