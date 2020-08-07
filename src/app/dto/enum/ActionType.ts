@@ -1,0 +1,6 @@
+export enum ActionType {
+	NEW_MESSAGE,
+	MESSAGE_EDIT,
+	CONVERSATION_READ,
+	USER_ONLINE
+}

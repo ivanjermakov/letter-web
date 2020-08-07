@@ -6,12 +6,16 @@ import {NewMessage} from "../dto/NewMessage"
 import {Message} from "@angular/compiler/src/i18n/i18n_ast"
 import {EditMessage} from "../dto/EditMessage"
 import {generateHttpOptionsWithTokenHeader} from "../../constant"
+import {ObservableData} from "../dto/ObservableData"
+import {Action} from "../dto/action/Action"
 
 // TODO: deal with 2s lag between EventSource reconnections
 @Injectable({
 	providedIn: 'root'
 })
 export class MessagingService {
+
+	actions: ObservableData<Action> = new ObservableData<Action>()
 
 	private MESSAGING_URL = 'messaging'
 
@@ -20,7 +24,7 @@ export class MessagingService {
 
 	getEvents(token: string): Observable<any> {
 		return new Observable(o => {
-			const es = new EventSource(`${environment.API_URL}/${this.MESSAGING_URL}/delete/token=${token}`)
+			const es = new EventSource(`${environment.API_URL}/${this.MESSAGING_URL}/listen?Auth-Token=${token}`)
 			es.addEventListener('message', (e: any) => {
 				o.next(JSON.parse(e.data))
 			})
