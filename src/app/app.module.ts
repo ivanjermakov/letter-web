@@ -26,6 +26,7 @@ import {MessageInputComponent} from './component/embedded/message-input/message-
 import {AutosizeModule} from "ngx-autosize"
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome'
 import {AvatarComponent} from './component/embedded/avatar/avatar.component'
+import {EnterNewlineDirective} from "./directive/enter-newline-directive"
 
 @NgModule({
 	declarations: [
@@ -48,7 +49,8 @@ import {AvatarComponent} from './component/embedded/avatar/avatar.component'
 		MessageComponent,
 		NoConversationComponent,
 		MessageInputComponent,
-		AvatarComponent
+		AvatarComponent,
+		EnterNewlineDirective
 	],
 	imports: [
 		BrowserModule,

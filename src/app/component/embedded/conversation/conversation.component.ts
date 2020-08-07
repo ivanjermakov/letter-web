@@ -8,6 +8,9 @@ import {Pageable} from "../../../util/Pageable"
 import {MessageGroup} from "../../../dto/MessageGroup"
 import {CurrentConversationProvider} from "../../../provider/current-conversation-provider"
 import {PreviewsProvider} from "../../../provider/previews-provider"
+import {MessagingService} from "../../../service/messaging.service"
+import {NewMessage} from "../../../dto/NewMessage"
+import {MeProvider} from "../../../provider/me-provider"
 
 @Component({
 	selector: 'app-conversation',
@@ -25,8 +28,10 @@ export class ConversationComponent implements OnInit {
 		private router: Router,
 		private messageService: MessageService,
 		private tokenProvider: TokenProvider,
+		private meProvider: MeProvider,
 		private currentConversationProvider: CurrentConversationProvider,
 		private previewsProvider: PreviewsProvider,
+		private messagingService: MessagingService,
 	) {}
 
 	ngOnInit(): void {
@@ -41,13 +46,13 @@ export class ConversationComponent implements OnInit {
 							first(),
 							filter(t => !!t)
 						)
-						.subscribe(token => {
+						.subscribe(token =>
 							this.messageService.get(token, this.conversationId, new Pageable(0, 100))
 								.subscribe(messages => {
 									this.messages = messages
 									this.messageGroups = this.messageService.groupMessagesBySender(this.messages)
 								})
-						})
+						)
 				} else {
 					this.messages = []
 					this.messageGroups = []
@@ -77,6 +82,31 @@ export class ConversationComponent implements OnInit {
 					}
 				})
 		}
+	}
+
+	send(messageText: string) {
+		this.tokenProvider.token.observable
+			.pipe(first())
+			.subscribe(token => {
+				this.meProvider.me.observable
+					.pipe(first())
+					.subscribe(me => {
+						const newMessage = new NewMessage(
+							me.id,
+							this.conversationId,
+							messageText,
+							[],
+							[],
+							[]
+						)
+						this.messagingService.sendMessage(token, newMessage)
+							.subscribe(message => {
+								console.debug('send message successful', message)
+							}, error => {
+								console.error(error)
+							})
+					})
+			})
 	}
 
 }

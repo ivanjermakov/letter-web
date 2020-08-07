@@ -3,7 +3,10 @@
 	            [src]='"http://localhost:8080/api/file/default-avatar-conversation.png"'
 	            [size]='60'>
 	</app-avatar>
-	<textarea autosize [minRows]='2' [maxRows]='10'></textarea>
+	<textarea autosize [minRows]='2' [maxRows]='10'
+	          [(ngModel)]='messageText'
+	          appEnterNewline (onEnter)='send()'>
+	</textarea>
 	<app-avatar class='recipient-avatar'
 	            [src]='"http://localhost:8080/api/file/default-avatar-conversation.png"'
 	            [size]='60'>

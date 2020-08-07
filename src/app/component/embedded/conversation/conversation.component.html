@@ -4,7 +4,8 @@
 				*ngIf='conversationId'
 				[messageGroups]='messageGroups'>
 		</app-messages>
-		<app-message-input>
+		<app-message-input
+				(onSendMessage)='send($event)'>
 		</app-message-input>
 	</ng-container>
 	<ng-container *ngIf='!conversationId'>
