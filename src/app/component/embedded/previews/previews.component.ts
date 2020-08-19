@@ -52,8 +52,6 @@ export class PreviewsComponent implements OnInit {
 	private onNewMessage(newMessageAction: NewMessageAction) {
 		let preview = this.previews.find(p => p.conversation.id === newMessageAction.message.conversation.id)
 		if (!preview) return
-
-		console.log(`update preview @${preview.conversation.id}`)
 		preview.lastMessage = newMessageAction.message
 	}
 
