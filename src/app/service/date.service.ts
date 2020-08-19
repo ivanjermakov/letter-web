@@ -9,7 +9,7 @@ export class DateService {
 	constructor() {}
 
 	formatDateTime(date: Date): string {
-		return moment(date).format('HH:ss')
+		return moment(date).format('HH:mm')
 	}
 
 }
