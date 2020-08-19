@@ -6,6 +6,8 @@ import {Pageable} from "../../../util/Pageable"
 import {PreviewsProvider} from "../../../provider/previews-provider"
 import {CurrentConversationProvider} from "../../../provider/current-conversation-provider"
 import {filter} from "rxjs/operators"
+import {MessagingEventService} from "../../../service/messaging-event.service"
+import {NewMessageAction} from "../../../dto/action/NewMessageAction"
 
 @Component({
 	selector: 'app-previews',
@@ -21,7 +23,8 @@ export class PreviewsComponent implements OnInit {
 		private previewService: PreviewService,
 		private tokenProvider: TokenProvider,
 		private previewsProvider: PreviewsProvider,
-		private currentConversationProvider: CurrentConversationProvider
+		private currentConversationProvider: CurrentConversationProvider,
+		private messagingEventService: MessagingEventService
 	) {
 		this.currentConversationProvider.currentConversation.observable.subscribe(
 			id => this.conversationId = id
@@ -40,6 +43,18 @@ export class PreviewsComponent implements OnInit {
 						this.previewsProvider.previews.set(previews)
 					})
 			})
+
+		this.messagingEventService.onNewMessage.subscribe(action => {
+			this.onNewMessage(action)
+		})
+	}
+
+	private onNewMessage(newMessageAction: NewMessageAction) {
+		let preview = this.previews.find(p => p.conversation.id === newMessageAction.message.conversation.id)
+		if (!preview) return
+
+		console.log(`update preview @${preview.conversation.id}`)
+		preview.lastMessage = newMessageAction.message
 	}
 
 }

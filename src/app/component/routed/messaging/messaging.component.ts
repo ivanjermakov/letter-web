@@ -12,13 +12,12 @@ import {first} from "rxjs/operators"
 export class MessagingComponent implements OnInit {
 
 	previews: Preview[]
-
 	conversationId: number
 
 	constructor(
 		private tokenProvider: TokenProvider,
 		private messagingEventService: MessagingEventService
-	) { }
+	) {}
 
 	ngOnInit(): void {
 		this.tokenProvider.token.observable

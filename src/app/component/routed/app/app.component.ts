@@ -17,7 +17,7 @@ export class AppComponent {
 			.pipe(
 				filter(e => e instanceof NavigationEnd),
 				map((e: NavigationEnd) => e.url),
-				debounceTime(100)
+				debounceTime(200)
 			)
 			.subscribe((path: string) => {
 				if (

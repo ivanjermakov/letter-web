@@ -28,6 +28,7 @@ export class MessagingService {
 			es.addEventListener('message', (e: any) => {
 				o.next(JSON.parse(e.data))
 			})
+			es.onerror = () => es.close()
 		})
 	}
 

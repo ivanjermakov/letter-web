@@ -5,6 +5,8 @@ import {AvatarService} from "../../../service/avatar.service"
 import {MessageService} from "../../../service/message.service"
 import {Message} from "../../../dto/Message"
 import {DateService} from "../../../service/date.service"
+import {MeProvider} from "../../../provider/me-provider"
+import {User} from "../../../dto/User"
 
 @Component({
 	selector: 'app-preview',
@@ -19,13 +21,25 @@ export class PreviewComponent implements OnInit {
 	@Input()
 	active: boolean
 
+	me: User
+
 	constructor(
 		private avatarService: AvatarService,
 		private messageService: MessageService,
-		private dateService: DateService
+		private dateService: DateService,
+		private meProvider: MeProvider
 	) {}
 
 	ngOnInit(): void {
+		this.meProvider.me.observable.subscribe(me => {
+			this.me = me
+		})
+	}
+
+	senderName(): string {
+		return this.me.id === this.preview.lastMessage.sender.id
+			? 'You'
+			: this.preview.lastMessage.sender.firstName
 	}
 
 	getAvatarUrl(avatar: Avatar) {

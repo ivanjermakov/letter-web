@@ -23,7 +23,7 @@ export class MessagingEventService {
 		console.debug('subscribed to new events')
 		this.messagingService.getEvents(token).subscribe((action: Action) => {
 			console.debug(`new event of type ${action.type}`, action as any)
-			switch (action.type) {
+			switch (ActionType[action.type] as any) {
 				case ActionType.CONVERSATION_READ:
 					this.onConversationRead.emit(action as ConversationReadAction)
 					break

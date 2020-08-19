@@ -11,6 +11,8 @@ import {PreviewsProvider} from "../../../provider/previews-provider"
 import {MessagingService} from "../../../service/messaging.service"
 import {NewMessage} from "../../../dto/NewMessage"
 import {MeProvider} from "../../../provider/me-provider"
+import {MessagingEventService} from "../../../service/messaging-event.service"
+import {NewMessageAction} from "../../../dto/action/NewMessageAction"
 
 @Component({
 	selector: 'app-conversation',
@@ -32,6 +34,7 @@ export class ConversationComponent implements OnInit {
 		private currentConversationProvider: CurrentConversationProvider,
 		private previewsProvider: PreviewsProvider,
 		private messagingService: MessagingService,
+		private messagingEventService: MessagingEventService
 	) {}
 
 	ngOnInit(): void {
@@ -53,12 +56,12 @@ export class ConversationComponent implements OnInit {
 									this.messageGroups = this.messageService.groupMessagesBySender(this.messages)
 								})
 						)
-				} else {
-					this.messages = []
-					this.messageGroups = []
-					return
 				}
 			})
+
+		this.messagingEventService.onNewMessage.subscribe(action => {
+			this.onNewMessage(action)
+		})
 	}
 
 	@HostListener('document:keydown.escape', ['$event']) onEscape() {
@@ -82,6 +85,13 @@ export class ConversationComponent implements OnInit {
 					}
 				})
 		}
+	}
+
+	onNewMessage(newMessageAction: NewMessageAction) {
+		this.meProvider.me.observable.subscribe(me => {
+			this.messages.unshift(newMessageAction.message)
+			this.messageGroups = this.messageService.groupMessagesBySender(this.messages)
+		})
 	}
 
 	send(messageText: string) {

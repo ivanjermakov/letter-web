@@ -5,7 +5,7 @@
 	<p class='recipient-name'>{{preview.with.firstName}} {{preview.with.lastName}}</p>
 	<p class='last-message-sent'>{{formatSentDate(preview.lastMessage.sent)}}</p>
 	<div class='last-message'>
-		<p class='sender'>{{preview.lastMessage.sender.firstName}}: </p>
+		<p class='sender'>{{senderName()}}: </p>
 		<p class='message-text'>{{formatMessageText(preview.lastMessage)}}</p>
 	</div>
 </div>
