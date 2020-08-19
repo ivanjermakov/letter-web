@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core'
 import {HttpClient} from "@angular/common/http"
 import {Observable} from "rxjs"
-import {Message} from "@angular/compiler/src/i18n/i18n_ast"
 import {environment} from "../../environments/environment"
 import {generateHttpOptionsWithTokenHeader} from "../../constant"
 import {Pageable} from "../util/Pageable"
+import {Message} from "../dto/Message"
+import {MessageGroup} from "../dto/MessageGroup"
 
 @Injectable({
 	providedIn: 'root'
@@ -33,6 +34,29 @@ export class MessageService {
 			deleteMessages,
 			generateHttpOptionsWithTokenHeader(token)
 		)
+	}
+
+	formatShortMessageText(message: Message): string {
+		return message.text || '[attachment]'
+	}
+
+	groupMessagesBySender(messages: Message[]): MessageGroup[] {
+		if (messages.length === 0) return []
+
+		const result: Message[][] = []
+		let buffer: Message[] = [messages[0]]
+
+		for (let i = 1; i < messages.length; i++) {
+			if (messages[i].sender.id === messages[i - 1].sender.id) {
+				buffer.push(messages[i])
+			} else {
+				result.push(buffer)
+				buffer = [messages[i]]
+			}
+		}
+		result.push(buffer)
+
+		return result.map(group => new MessageGroup(group[0].sender, group))
 	}
 
 }

@@ -1,0 +1,74 @@
+@import 'src/app/style/colors'
+@import 'src/app/style/constants'
+
+.preview
+  display: grid
+  grid-template-columns: auto 1fr auto
+  grid-template-rows: repeat(3, auto)
+
+  width: 100%
+
+  padding: 4px 10px 4px 4px
+
+  &:hover
+    background: $bright
+    cursor: pointer
+
+  .recipient-avatar
+    grid-column: 1/2
+    grid-row: 1/4
+
+    display: flex
+    align-items: center
+    justify-content: center
+
+    margin-right: 5px
+
+    img
+      width: 50px
+
+  .recipient-name
+    grid-column: 2/3
+    grid-row: 1/2
+
+    font-size: $font-size-medium
+    font-weight: 600
+
+  .last-message-sent
+    grid-column: 3/4
+    grid-row: 1/2
+
+    align-self: center
+
+    font-size: $font-size-smaller
+
+  .last-message
+    grid-column: 2/4
+    grid-row: 2/4
+
+    display: flex
+    align-items: center
+
+    width: 100%
+
+    .sender
+      padding-right: 4px
+
+      color: $dark
+      font-size: $font-size-small
+
+    .message-text
+      font-size: $font-size-medium
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
+
+.active
+  background: $special-dark
+  color: white
+
+  &:hover
+    background: $special-dark
+
+  .last-message .sender
+    color: $bright

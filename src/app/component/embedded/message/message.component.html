@@ -1,0 +1,17 @@
+<div class='message'>
+	<ng-container *ngIf='first'>
+		<div class='sender-avatar'>
+			<img [src]='getAvatarUrl(message.sender.avatar)' [alt]='message.sender.login + " avatar"'>
+		</div>
+		<div class='header'>
+			<p class='recipient-name'>{{message.sender.firstName}} {{message.sender.lastName}}</p>
+			<p class='first-message-sent'>{{formatSentDate(message.sent)}}</p>
+		</div>
+	</ng-container>
+	<ng-container *ngIf='!first'>
+		<div class='sent'>
+			{{formatSentDate(message.sent)}}
+		</div>
+	</ng-container>
+	<p class='message-text'>{{message.text}}</p>
+</div>

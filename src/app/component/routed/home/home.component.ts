@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
 	}
 
 	start() {
-		this.meProvider.me
+		this.meProvider.me.observable
 			.pipe(first())
 			.subscribe(me => {
 				if (me) {

@@ -17,32 +17,33 @@ export class AppComponent {
 			.pipe(
 				filter(e => e instanceof NavigationEnd),
 				map((e: NavigationEnd) => e.url),
-				debounceTime(100)
+				debounceTime(200)
 			)
 			.subscribe((path: string) => {
-					if (
-						path !== '/' &&
-						path !== '/im'
-					) {
-						this.router.navigate([path])
-						return
-					}
+				if (
+					path !== '/' &&
+					!path.includes('/im')
+				) {
+					this.router.navigate([path])
+					return
+				}
 
-					this.meProvider.me
+				this.meProvider.onload(() => {
+					this.meProvider.me.observable
 						.pipe(first())
 						.subscribe(me => {
 							if (me) {
 								if (path === '/') {
 									this.router.navigate(['/im'])
 								} else {
-									this.router.navigate([path])
+									this.router.navigateByUrl(path)
 								}
 							} else {
 								this.router.navigate(['/auth'])
 							}
 						})
-				}
-			)
+				})
+			})
 	}
 
 }

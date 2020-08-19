@@ -1,0 +1,6 @@
+<div class='previews'>
+	<app-preview *ngFor='let preview of previews'
+	             [preview]='preview'
+	             [active]='conversationId == preview.conversation.id'>
+	</app-preview>
+</div>
